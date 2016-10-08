@@ -1,0 +1,10 @@
+name: mynpc
+main: jb\kill
+version: 1.0.11
+api: [1.0.0]
+load: POSTWORLD
+author: cpera/RexRed
+commands:
+  new:
+    description: add a new npc
+    usage: "/new <npc name> <npc type 1/2>"
