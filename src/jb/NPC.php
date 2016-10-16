@@ -141,7 +141,7 @@ class NPC extends Creature{
 				$x=$player->x-$this->x;
 				$atn = atan2($z, $x);
 				$ppos=$player->getPosition();
-				  if($this->distance(new Vector3($ppos->getX(),$player->getY(),$ppos->getZ())) <= 0.8){
+				  if($this->distance(new Vector3($ppos->getX(),$ppos->getY(),$ppos->getZ())) <= 0.8){
                                      if($this->a <= 0){
 		                        $this->move($x/8,$y/1.2,$z/8);
 		                	$ev = new EntityDamageByEntityEvent($this, $this->target, EntityDamageEvent::CAUSE_ENTITY_ATTACK, $this->attackDamage);
