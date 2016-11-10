@@ -145,6 +145,7 @@ class NPC extends Creature{
                                      if($this->a <= 0){
 		                        $this->move($x/8,$y/1.2,$z/8);
 		                	$ev = new EntityDamageByEntityEvent($this, $this->target, EntityDamageEvent::CAUSE_ENTITY_ATTACK, $this->attackDamage);
+                                        $ev->setKnockBack(3);
 		                        $this->target->sendPopup("你已受到{$this->attackDamage}的物理攻擊傷害");
 					$player->attack($ev->getFinalDamage(), $ev);
                                         $this->a = 10;
