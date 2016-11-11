@@ -39,8 +39,7 @@ public function onEnable(){
 		@mkdir($this->getDataFolder());
        
 		$this->c=new Config($this->getDataFolder()."cfg.yml",Config::YAML,array());
-		$this->setting=new Config($this->getDataFolder()."setting.yml",Config::YAML,array());
-                $this->cachec=$this->c->getAll();
+		$this->skin=new Config($this->getDataFolder()."skin.yml",Config::YAML,array());
 
 		$this->getLogger()->info(TextFormat::WHITE . "插件已启用！");
 		$this->getLogger()->info(TextFormat::BLUE . "===========================");
@@ -87,7 +86,7 @@ public function spaw($name,$level){
 			"attackDamage" => new FloatTag("attackDamage",$data["damage"]),
 			"networkId" => new IntTag("networkId",63),
 			"speed" => new FloatTag("speed",$data["speed"]),
-			"skin" => new StringTag("skin",$data["skin"]),
+			"skin" => new StringTag("skin",$this->skin->get($name)),
             "heldItem"=> new StringTag("heldItem",$data["heldItem"]),
             "type" => new StringTag("type",$data["type"])
             ]);
@@ -115,10 +114,11 @@ public function spaw($name,$level){
             "speed"=>1,
             "drops"=>"1;2;3",
             "heldItem"=>"276",
-            "command"=>"/say player",
-            "skin"=>bin2hex($sender->getSkinData())
+            "command"=>"/say player"           
             ));
 	  $this->c->save();
+	  $this->skin->set($args[0],bin2hex($sender->getSkinData()));
+	  $this->skin->save(true);
 	  $this->spaw($args[0],$sender->getLevel());
 	  $sender->sendMessage("成功新增npc: $args[0]");
 				}elseif($cmd == "clean"){
